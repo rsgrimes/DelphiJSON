@@ -79,7 +79,11 @@ begin
 
   ser := DelphiJSON<TTestRec>.SerializeJ(tmp);
 
+{$IF CompilerVersion > 32.0}
   desired := TJSONObject.ParseJSONValue(res, false, true);
+{$ELSE}
+  desired := TJSONObject.ParseJSONValue(res, false);
+{$IFEND}
 
   Assert.IsTrue(JSONEquals(ser, desired));
 

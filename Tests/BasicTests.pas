@@ -103,7 +103,11 @@ begin
 
   t.Free;
 
+{$IF CompilerVersion > 32.0}
   obj2 := TJSONObject.ParseJSONValue(res, false, true);
+{$ELSE}
+  obj2 := TJSONObject.ParseJSONValue(res, false);
+{$IFEND}
 
   Assert.IsTrue(JSONEquals(obj1, obj2));
 

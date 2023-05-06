@@ -119,7 +119,11 @@ begin
   tmp.data.Free;
   tmp.Free;
 
+{$IF CompilerVersion > 32.0}
   desired := TJSONObject.ParseJSONValue(res, false, True);
+{$ELSE}
+  desired := TJSONObject.ParseJSONValue(res, false);
+{$IFEND}
 
   Assert.IsTrue(JSONEquals(ser, desired, false));
 
@@ -158,7 +162,11 @@ var
   s: string;
 begin
 
+{$IF CompilerVersion > 32.0}
   desired := TJSONObject.ParseJSONValue(res, false, True);
+{$ELSE}
+  desired := TJSONObject.ParseJSONValue(res, false);
+{$IFEND}
 
   tmp := TTest.Create;
   tmp.field := 123;

@@ -2060,7 +2060,11 @@ var
 begin
   val := nil;
   try
+{$IF CompilerVersion > 32.0}
     val := TJSONObject.ParseJSONValue(data, True, True);
+{$ELSE}
+    val := TJSONObject.ParseJSONValue(data, True);
+{$IFEND}
     Result := DeserializeJ(val, settings);
   except
     on E: EDJError do

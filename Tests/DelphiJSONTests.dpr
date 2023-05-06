@@ -22,7 +22,9 @@ uses
   DefaultValueTests in 'DefaultValueTests.pas',
   ConverterTests in 'ConverterTests.pas',
   ConstructorTests in 'ConstructorTests.pas',
-  NonNilableTests in 'NonNilableTests.pas',
+{$IF CompilerVersion > 32.0}
+  NonNilableTests in 'NonNilableTests.pas',  // Fails on Delphi 10.2
+{$IFEND}
   RequiredTests in 'RequiredTests.pas',
   SerializableAttrTests in 'SerializableAttrTests.pas',
   ListTests in 'ListTests.pas',
